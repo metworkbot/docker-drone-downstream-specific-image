@@ -5,6 +5,16 @@ if test "${PLUGIN_REPOSITORIES:-}" = ""; then
   echo "=> miss repositories value in configuration ?"
   exit 1
 fi
+if test "${DOWNSTREAM_SERVER:-}" != ""; then
+    if test "${DRONE_SERVER:-}" = ""; then
+        export DRONE_SERVER=${DOWNSTREAM_SERVER}
+    fi
+fi
+if test "${DOWNSTREAM_TOKEN:-}" != ""; then
+    if test "${DRONE_TOKEN:-}" = ""; then
+        export DRONE_TOKEN=${DOWNSTREAM_TOKEN}
+    fi
+fi
 if test "${DRONE_SERVER:-}" = ""; then
   echo "missing DRONE_SERVER env var"
   echo "=> miss drone_server secret in configuration ?"
