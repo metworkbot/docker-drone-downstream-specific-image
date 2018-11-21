@@ -1,30 +1,4 @@
 pull_request_rules:
-- name: metworkbot automerge
-  actions:
-    label:
-      add:
-        - Merge Now
-  conditions:
-    - author=metworkbot
-    - -merged
-    - -closed
-
-- name: integration branch
-  actions:
-    label:
-      add:
-        - Merge Now
-  conditions:
-    - base=integration
-    - -merged
-    - -closed
-    - label!=no-mergify
-    - '#approved-reviews-by>=1'
-    - status-success=license/cla
-    - author!=metworkbot
-
-    - status-success=continuous-integration/drone/pr
-
 
 - name: merge action
   actions:
